@@ -33,8 +33,8 @@ class StarbucksSpider(scrapy.Spider):
             for i in range(len(name)):
 
                 item = StarbucksItem()
-                item['product_name']=(name[i])
-                item['product_link']=(link[i])
+                item['product_class_name']=(name[i])
+                item['product_class_link']=(link[i])
                 items.append(item)
 
         return  items

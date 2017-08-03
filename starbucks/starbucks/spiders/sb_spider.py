@@ -13,7 +13,7 @@ class StarbucksSpider(scrapy.Spider):
 
     def parse(self, response):
         p = r'=.+?\b'
-       # print('UUUUUUUUUUUU',response.url)
+        #print('UUUUUUUUUUUU',response.url)
 
         filename = re.findall(p,response.url)[0][1:]
         #print('FFFFFFFFFFFFFF', filename)
@@ -24,7 +24,7 @@ class StarbucksSpider(scrapy.Spider):
         sel = scrapy.selector.Selector(response)
         names = sel.xpath('//strong/span/text()').extract()
         links = sel.xpath('//ol[@class="blocks blocks-four-up thumbs"]/li/a/@href').extract()
-        #print('LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL',links)
+        #print('LLLLLLLLLLLLLLLLLLLLL',links)
 
         items = []
         for i in range(len(names)):
