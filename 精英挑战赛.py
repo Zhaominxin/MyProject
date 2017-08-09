@@ -53,21 +53,50 @@ print(d)
 e = d.split('\n')
 
 print(e)
-
+"""
+txt_add_space = ''
 for i in range(len(e)):
+    ei_add_space = ''
     if len(e[i]) < 30:
         #while  len(e[i])<30:
         diff = 30 - len(e[i])
-        start = 0
-        end = len(e[i])
-        for j in range(1,diff):
-            index = e[i].find(' ', start, end)
-            e[i] = e[i][:index] + ' ' + e[i][index:]
-            start + index
+        line = e[i].split()
+        #print(line)
+        space = len(line) - 1
+        if diff//space < 1:
+            #print(r'diff//space<1')
+            #print(line)
+            space_dict ={i:1 for i in range(diff)}
+            line_add_space = []
+            for i in range(diff):
+                line_add_space.append(line[i])
+                line_add_space.append(' ')
+                line_add_space.append(' '*space_dict[i])
+            for i in range((diff+1), (len(line)+1)):
+                line_add_space.append(line[i])
+                line_add_space.append(' ')
+            line_add_space.pop()
+            print(line_add_space)
+        else:
+            space_dict = {i:diff//space for i in range(space)}
+            if diff%space >= 1:
+                for i in range(int(diff%space)):
+                    space_dict[i] += 1
+            line_add_space =[]
+            for i in range(len(space_dict)):
+                line_add_space.append(line[i])
+                line_add_space.append(' ')
+                line_add_space.append(' '* space_dict[i])
+            line_add_space.append(line[-1])
+            print(line_add_space)
 
+        for i in line_add_space:
+            ei_add_space += i
 
-f = ''
-for i in e:
-    f += (i+'\n')
+    else:
+        ei_add_space = e[i]
 
-print(f)
+    txt_add_space += (ei_add_space + '')
+
+ print(txt_add_space)
+ """
