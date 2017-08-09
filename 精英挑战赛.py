@@ -17,17 +17,19 @@ b=[]
 for i in a:
 	b.append(i)
 	b.append(' ')
+print('LLLLLLLLLLLLLLLLLLLLL')
+print(len(b))
+b.pop()
+
+
 
 c = []
 count = 0
 print(b)
-for i in range(122):
+for i in range(len(b)):
     if (count + len(b[i])) <= 30:
         c.append(b[i])
         count += len(b[i])
-        print(count)
-        print(b[i])
-        print(c)
     else:
         c.append('\n')
         count = 0
@@ -53,50 +55,39 @@ print(d)
 e = d.split('\n')
 
 print(e)
-"""
-txt_add_space = ''
-for i in range(len(e)):
-    ei_add_space = ''
-    if len(e[i]) < 30:
-        #while  len(e[i])<30:
-        diff = 30 - len(e[i])
-        line = e[i].split()
-        #print(line)
-        space = len(line) - 1
-        if diff//space < 1:
-            #print(r'diff//space<1')
-            #print(line)
-            space_dict ={i:1 for i in range(diff)}
-            line_add_space = []
-            for i in range(diff):
-                line_add_space.append(line[i])
-                line_add_space.append(' ')
-                line_add_space.append(' '*space_dict[i])
-            for i in range((diff+1), (len(line)+1)):
-                line_add_space.append(line[i])
-                line_add_space.append(' ')
-            line_add_space.pop()
-            print(line_add_space)
-        else:
-            space_dict = {i:diff//space for i in range(space)}
-            if diff%space >= 1:
-                for i in range(int(diff%space)):
-                    space_dict[i] += 1
-            line_add_space =[]
+
+txt_add_space = '' #新字符串
+for each in e:
+    print('共%d个字节' % len(each))
+    print('有%d个空' % (len(each.split())-1))
+    print('缺%d个空格' % (30-len(each)))
+    split_string = each.split() #按空格拆分
+    space_dict = {i:0 for i in range(len(split_string)-1)} #建立空隙字典
+    #计算每个空隙应填充几个空格
+    new_string = ''
+    count_space = 30 - len(each)
+    if count_space >= len(split_string):#如果应补空格数大于等于空隙数量
+        print(each)
+        print(count_space)
+        while count_space >= len(split_string):
             for i in range(len(space_dict)):
-                line_add_space.append(line[i])
-                line_add_space.append(' ')
-                line_add_space.append(' '* space_dict[i])
-            line_add_space.append(line[-1])
-            print(line_add_space)
+                space_dict[i] +=1
+            count_space -= len(space_dict)
+        for i in range(count_space):
+            space_dict[i] += 1
+    else: #应补空格数小于等于空隙数量
+        for i in range(count_space):
+            space_dict[i] += 1
+    #根据字典填充空格
+    new_each =[]
+    for i in range(len(space_dict)):
+        new_each.append(split_string[i])
+        new_each.append(' '*(space_dict[i]+1))
+    new_each.append(split_string[-1])
+    for each in new_each:
+        new_string += each
+    txt_add_space += (new_string + '\n')
 
-        for i in line_add_space:
-            ei_add_space += i
+print(txt_add_space)
 
-    else:
-        ei_add_space = e[i]
 
-    txt_add_space += (ei_add_space + '')
-
- print(txt_add_space)
- """
